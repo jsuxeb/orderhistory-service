@@ -1,40 +1,39 @@
 package com.training.model;
 
-import org.bson.types.ObjectId;
-
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
 
 public class OrderHistory {
 
-    private ObjectId orderId;
-    private String status;
-    private double totalAmount;
+    private Long id;
+    private String userId;
+    private Instant orderDate;
     private List<OrderItem> items;
-    private LocalDate updateAt;
+    private List<Status> status;
+    private Double totalAmount;
 
-    public ObjectId getOrderId() {
-        return orderId;
+    public Long getId() {
+        return id;
     }
 
-    public void setOrderId(ObjectId orderId) {
-        this.orderId = orderId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
+    public Instant getOrderDate() {
+        return orderDate;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setOrderDate(Instant orderDate) {
+        this.orderDate = orderDate;
     }
 
     public List<OrderItem> getItems() {
@@ -45,11 +44,21 @@ public class OrderHistory {
         this.items = items;
     }
 
-    public LocalDate getUpdateAt() {
-        return updateAt;
+
+
+    public Double getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setUpdateAt(LocalDate updateAt) {
-        this.updateAt = updateAt;
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public List<Status> getStatus() {
+        return status;
+    }
+
+    public void setStatus(List<Status> status) {
+        this.status = status;
     }
 }

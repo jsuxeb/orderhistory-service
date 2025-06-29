@@ -1,0 +1,38 @@
+quarkus:
+  mongodb:
+    database: orderhistory
+    connection-string: mongodb://localhost:27017/orderhistory
+
+kafka:
+  bootstrap:
+    servers: PLAINTEXT://192.168.1.36:19092
+mp:
+  messaging:
+    connector:
+      smallrye-kafka:
+        schema:
+          registry:
+            url: http://192.168.1.36:8081
+        auto:
+          register:
+            schemas: false
+        use:
+          latest:
+            version: true
+    incoming:
+      order-history:
+        connector: smallrye-kafka
+        failure-strategy: ignore
+        key:
+          deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value:
+          deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+        topic: order-history-topic
+        group:
+          id: order-service-group-01
+        auto:
+          offset:
+            reset: earliest
+        enable:
+          auto:
+            commit: false

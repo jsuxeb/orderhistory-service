@@ -6,4 +6,6 @@ import io.smallrye.mutiny.Uni;
 public interface OrderHistoryRepository {
 
     Uni<OrderHistory> save(OrderHistory orderHistory);
+
+    Uni<OrderHistory> findByOrderId(Long orderId);
 }

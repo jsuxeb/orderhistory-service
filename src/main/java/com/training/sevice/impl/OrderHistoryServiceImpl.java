@@ -15,6 +15,21 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
 
     @Override
     public Uni<OrderHistory> saveOrderHistory(OrderHistory orderHistory) {
-        return repository.save(orderHistory);
+
+        return repository.findByOrderId(orderHistory.getId())
+                .onItem().ifNotNull().transform(order -> {
+                    order.getStatus()
+                            .add(orderHistory.getStatus().get(0));
+                    return repository.save(order);
+
+                })
+                .onItem()
+                .ifNull()
+                .switchTo(() -> Uni.createFrom().item(repository.save(orderHistory)))
+                .flatMap(f -> f);
+
+
     }
+
+
 }
