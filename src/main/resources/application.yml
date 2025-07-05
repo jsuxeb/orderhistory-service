@@ -1,18 +1,20 @@
 quarkus:
   mongodb:
     database: orderhistory
-    connection-string: mongodb://localhost:27017/orderhistory
+    connection-string: mongodb://192.168.1.48:27017/orderhistory
+  http:
+    port: 8082
 
 kafka:
   bootstrap:
-    servers: PLAINTEXT://192.168.1.36:19092
+    servers: PLAINTEXT://192.168.1.48:19092
 mp:
   messaging:
     connector:
       smallrye-kafka:
         schema:
           registry:
-            url: http://192.168.1.36:8081
+            url: http://192.168.1.48:8081
         auto:
           register:
             schemas: false

@@ -6,8 +6,9 @@ import java.util.List;
 public class OrderHistory {
 
     private Long id;
-    private String userId;
-    private Instant orderDate;
+    private Long userId;
+    private Instant createdAt;
+    private Instant updatedAt;
     private List<OrderItem> items;
     private List<Status> status;
     private Double totalAmount;
@@ -20,20 +21,20 @@ public class OrderHistory {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Instant getOrderDate() {
-        return orderDate;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public void setOrderDate(Instant orderDate) {
-        this.orderDate = orderDate;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 
     public List<OrderItem> getItems() {
@@ -60,5 +61,13 @@ public class OrderHistory {
 
     public void setStatus(List<Status> status) {
         this.status = status;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

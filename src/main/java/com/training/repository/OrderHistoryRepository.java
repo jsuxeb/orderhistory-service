@@ -8,4 +8,6 @@ public interface OrderHistoryRepository {
     Uni<OrderHistory> save(OrderHistory orderHistory);
 
     Uni<OrderHistory> findByOrderId(Long orderId);
+
+    Uni<OrderHistory> update(OrderHistory orderHistory);
 }

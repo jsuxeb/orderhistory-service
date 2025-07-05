@@ -4,7 +4,7 @@ import java.time.Instant;
 
 public class Status {
     private String status;
-    private Instant statusDate;
+    private Instant createdAt;
 
     public String getStatus() {
         return status;
@@ -14,11 +14,11 @@ public class Status {
         this.status = status;
     }
 
-    public Instant getStatusDate() {
-        return statusDate;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public void setStatusDate(Instant statusDate) {
-        this.statusDate = statusDate;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 }
