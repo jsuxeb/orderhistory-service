@@ -6,12 +6,15 @@ import com.training.model.OrderHistory;
 import com.training.repository.OrderHistoryRepository;
 import io.quarkus.mongodb.reactive.ReactiveMongoClient;
 import io.quarkus.mongodb.reactive.ReactiveMongoCollection;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bson.conversions.Bson;
+
+import java.util.List;
 
 @ApplicationScoped
 public class OrderHistoryRepositoryImpl implements OrderHistoryRepository {
@@ -57,6 +60,12 @@ public class OrderHistoryRepositoryImpl implements OrderHistoryRepository {
         return getCollection()
                 .find(filter)
                 .toUni();
+    }
+    public Uni<List<OrderHistory>> findByUserId(Long userId){
+        Bson filter = Filters.eq("userId", userId);
+        return getCollection()
+                .find(filter)
+                .collect().asList();
     }
 
 

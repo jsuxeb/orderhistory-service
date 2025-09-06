@@ -6,13 +6,11 @@ import com.training.model.Status;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ObjectMapper {
@@ -54,11 +52,16 @@ public class ObjectMapper {
 
     public static OrderHistoryDto toOrderHistoryDto(OrderHistory orderHistory) {
         OrderHistoryDto dto = new OrderHistoryDto();
-        dto.setCreatedAt(formatearFecha(orderHistory.getCreatedAt()));
-        dto.setItems(orderHistory.getItems());
-        dto.setStatus(getStatus(orderHistory.getStatus()));
-        dto.setTotalAmount(orderHistory.getTotalAmount());
-        dto.setOrderId(orderHistory.getId());
+        if (orderHistory != null) {
+            dto.setCreatedAt(formatearFecha(orderHistory.getCreatedAt()));
+            dto.setItems(orderHistory.getItems() != null ? orderHistory.getItems() : Collections.emptyList());
+            dto.setStatus(getStatus(orderHistory.getStatus()));
+            dto.setTotalAmount(orderHistory.getTotalAmount() != null ? orderHistory.getTotalAmount() : 0);
+            dto.setOrderId(orderHistory.getId());
+        } else {
+            dto.setItems(Collections.emptyList());
+            dto.setTotalAmount(0.0);
+        }
 
         return dto;
     }
@@ -74,6 +77,9 @@ public class ObjectMapper {
 
     private static String formatearFecha(Instant orderDate) {
         try {
+            if (orderDate == null) {
+                return "";
+            }
             DateTimeFormatter formatter = DateTimeFormatter
                     .ofPattern("dd 'de' MMMM 'del' yyyy 'a las' hh:mm a")
                     .withZone(ZoneOffset.UTC)

@@ -3,7 +3,7 @@ quarkus:
     database: orderhistory
     connection-string: mongodb://192.168.1.48:27017/orderhistory
   http:
-    port: 8082
+    port: 8080
 
 kafka:
   bootstrap:

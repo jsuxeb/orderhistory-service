@@ -6,7 +6,7 @@ docker build -f Dockerfile -t galaxytraining/orderhistory-service:1.0.0 .
 
 docker run -d `
   --name orderhistory-service `
--p 8787:8787 `
+-p 8084:8008 `
   -e CONFIG_SCHEMA_REGISTRY_URL=http://192.168.1.48:8081 `
 -e CONFIG_KAFKA_BROKERS=PLAINTEXT://192.168.1.48:19092 `
 galaxytraining/orderhistory-service:1.0.0
